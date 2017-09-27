@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        div.view {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="view" id="quizSelectionView">
+        <h1>Quizer</h1>
+        <table id="quizes" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Starttidspunkt</th>
+                <th>Delta</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id="quiz_1">
+                <td>Test</td>
+                <td>Nå</td>
+                <td></td>
+            </tr>
+            <tr id="quiz_2">
+                <td>Test</td>
+                <td>Nå</td>
+                <td></td>
+            </tr>
+            <tr id="quiz_3">
+                <td>sdfsdg</td>
+                <td>Nå</td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="view" id="createQuizView">
+        <h1>Lag ny quiz</h1><br>
+        <input type="text" class="form-control" id="newQuizName" placeholder="Quiznavn"><br>
+        <input type="datetime-local" class="form-control" id="newQuizStartTime" placeholder="Starttidspunkt"><br>
+        <table id="newQuizQuestions" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Spørsmåltekst</th>
+                <th>Svaralternativer</th>
+                <th>Svartid</th>
+                <th>Valgfritt bilde</th>
+                <!--<th>Fjern</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" class="form-control" data-attribute="text" placeholder="Spørsmål"></td>
+                <td>
+                    <input type="text" class="form-control" data-attribute="alt1" placeholder="Riktig svar">
+                    <input type="text" class="form-control" data-attribute="alt2" placeholder="Alternativ 2">
+                    <input type="text" class="form-control" data-attribute="alt3" placeholder="Alternativ 3">
+                    <input type="text" class="form-control" data-attribute="alt4" placeholder="Alternativ 4">
+                </td>
+                <td><input type="number" min="1" step="1" class="form-control" data-attribute="time" placeholder="Tid i sekunder"></td>
+                <td><input type="text" class="form-control" data-attribute="img" placeholder="Bilde-URL"></td>
+                <!--<td><button class="btn btn-danger" onclick="removeQuestion(1)"><span class="glyphicon glyphicon-remove"></span></button></td>-->
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn" onclick="addNewQuestion()"><span class="glyphicon glyphicon-plus"></span> Legg til spørsmål</button>
+        <br><br>
+        <button class="btn btn-primary" onclick="saveNewQuiz()">Opprett quiz</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>

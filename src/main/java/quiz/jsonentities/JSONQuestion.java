@@ -6,6 +6,7 @@ package quiz.jsonentities;
  * @author Magnus Conrad Hyll (magnus@hyll.no)
  */
 public class JSONQuestion {
+
     private String text;
     private String[] alternatives;
     private int time;

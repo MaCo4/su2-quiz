@@ -1,30 +1,26 @@
 package quiz.entities;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 /**
  * Created by Magnus on 26.09.2017.
  *
  * @author Magnus Conrad Hyll (magnus@hyll.no)
  */
 public class Quiz {
-    private static int nextId = 1;
 
     private int id;
     private String name;
-    private LocalDateTime startTime;
-    private ArrayList<Question> questions;
+    private long startTime;
+    private Question[] questions;
 
-    public Quiz(String name, LocalDateTime startTime, ArrayList<Question> questions) {
-        id = nextId++;
-        this.name = name;
-        this.startTime = startTime;
-        this.questions = questions;
+    public Quiz() {
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -35,19 +31,19 @@ public class Quiz {
         this.name = name;
     }
 
-    public LocalDateTime getStartTime() {
+    public long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
-    public ArrayList<Question> getQuestions() {
+    public Question[] getQuestions() {
         return questions;
     }
 
-    public void setQuestions(ArrayList<Question> questions) {
+    public void setQuestions(Question[] questions) {
         this.questions = questions;
     }
 }

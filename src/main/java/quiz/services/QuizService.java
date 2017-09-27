@@ -1,5 +1,10 @@
 package quiz.services;
 
+import quiz.DataStore;
+import quiz.entities.Quiz;
+import quiz.jsonentities.JSONQuiz;
+import quiz.jsonentities.JSONResult;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -13,13 +18,35 @@ public class QuizService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addQuiz(Quiz newMsg) {
-        msg = newMsg;
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONResult addQuiz(Quiz newQuiz) {
+        DataStore.addNewQuiz(newQuiz);
+
+        JSONResult result = new JSONResult();
+        result.setResult("success");
+        return result;
     }
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getMessage() {
-        return msg;
+    @Path("/{quizId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Quiz getQuiz(@PathParam("quizId") String quizId) {
+        int id;
+        try {
+            id = Integer.parseInt(quizId);
+        } catch (NumberFormatException ex) {
+            throw new NotFoundException();
+        }
+
+        if (!DataStore.quizes.containsKey(id)) {
+            throw new NotFoundException();
+        }
+        return DataStore.quizes.get(id);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Quiz[] getAllQuizes() {
+        return DataStore.quizes.values().toArray(new Quiz[0]);
     }
 }

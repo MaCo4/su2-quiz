@@ -6,6 +6,7 @@ package quiz.jsonentities;
  * @author Magnus Conrad Hyll (magnus@hyll.no)
  */
 public class JSONUser {
+
     private String name;
 
     public JSONUser() {

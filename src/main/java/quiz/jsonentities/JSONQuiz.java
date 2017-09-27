@@ -9,11 +9,20 @@ import quiz.entities.Question;
  */
 public class JSONQuiz {
 
+    private int id;
     private String name;
     private long startTime;
     private Question[] questions;
 
     public JSONQuiz() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
