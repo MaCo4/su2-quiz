@@ -4,12 +4,27 @@ function gotoView(view) {
         $("#" + currentView).css("display", "none");
     }
     currentView = view;
-    $("#" + currentView).css("display", "block");
+    $("#" + view).css("display", "block");
 }
 
+var currentQuiz = null;
+var currentQuestion = -1;
 function joinQuiz(id) {
-    // Velg nick
-    // Quiz
+    gotoView("playQuizView");
+
+    $.getJSON("/rest/quiz/" + id, function (data) {
+        currentQuiz = data;
+    });
+
+    currentQuestion = 0;
+
+}
+
+function playQuiz() {
+    $("#selectNickSubView").css("display", "none");
+    $("#playQuizContentView").css("display", "block");
+
+
 }
 
 function spectateQuiz(id) {
@@ -36,11 +51,12 @@ function saveNewQuiz() {
     var newQuiz = {
         id: -1, // Serveren genererer id
         name: $("#newQuizName").val(),
-        startTime: $("#newQuizStartTime").val(),
-        questions: []
+        startTime: new Date($("#newQuizStartTime").val()).getTime() / 1000,
+        questions: [],
+        scores: []
     };
 
-    $("#newQuizQuestions").find("tbody").find("tr").find("td").each(function () {
+    $("#newQuizQuestions").find("tbody tr").each(function () {
         var row = $(this);
         var text = row.find("input[data-attribute='text']").val();
         var correct = row.find("input[data-attribute='correct']").val();
@@ -73,7 +89,7 @@ function saveNewQuiz() {
     $.ajax({
         url: "/rest/quiz",
         type: "POST",
-        data: newQuiz,
+        data: JSON.stringify(newQuiz),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -105,11 +121,11 @@ $(function () {
         "<td>Hvaerdette</td>" +
         "<td>Snart</td>" +
         "<td class='col-md-3'>" +
-        "<button class='btn btn-primary' onclick='joinQuiz(12332)'>Delta</button>&nbsp;" +
+        "<button class='btn btn-success' onclick='joinQuiz(12332)'>Delta</button>&nbsp;" +
         "<button class='btn btn-secondary' onclick='spectateQuiz(12332)'>Se scoreboard</button>" +
         "</td>" +
         "</tr>"
     );
 
-    gotoView("#createQuizView");
+    gotoView("quizSelectionView");
 });

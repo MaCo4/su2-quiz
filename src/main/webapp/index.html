@@ -17,6 +17,7 @@
 <div class="container">
     <div class="view" id="quizSelectionView">
         <h1>Quizer</h1>
+        <button class="btn btn-primary" onclick="gotoView('createQuizView')"><span class="glyphicon glyphicon-plus"></span> Opprett ny quiz</button><br><br>
         <table id="quizes" class="table table-striped">
             <thead>
             <tr>
@@ -26,21 +27,6 @@
             </tr>
             </thead>
             <tbody>
-            <tr id="quiz_1">
-                <td>Test</td>
-                <td>Nå</td>
-                <td></td>
-            </tr>
-            <tr id="quiz_2">
-                <td>Test</td>
-                <td>Nå</td>
-                <td></td>
-            </tr>
-            <tr id="quiz_3">
-                <td>sdfsdg</td>
-                <td>Nå</td>
-                <td></td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -77,6 +63,19 @@
         <button class="btn" onclick="addNewQuestion()"><span class="glyphicon glyphicon-plus"></span> Legg til spørsmål</button>
         <br><br>
         <button class="btn btn-primary" onclick="saveNewQuiz()">Opprett quiz</button>
+        <button class="btn btn-danger" onclick="gotoView('quizSelectionView')">Avbryt</button>
+    </div>
+
+    <div class="view" id="playQuizView">
+        <h1>Spill quiz: <span id="quizNameTitle"></span></h1><br>
+        <div id="selectNickSubView">
+            <p>Velg et nick:</p>
+            <input type="text" class="form-control" id="playerName" placeholder="Nicknavn"><br><br>
+            <button class="btn btn-primary" onclick="playQuiz()">Start quiz</button>
+        </div>
+        <div class="view" id="playQuizContentView">
+            HER ER QUIZEN
+        </div>
     </div>
 </div>
 

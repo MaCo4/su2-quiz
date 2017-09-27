@@ -2,7 +2,6 @@ package quiz;
 
 import quiz.entities.Question;
 import quiz.entities.Quiz;
-import quiz.entities.User;
 
 import java.util.HashMap;
 
@@ -15,8 +14,6 @@ public class DataStore {
     private static int nextQuizId = 1;
 
     public static HashMap<Integer, Quiz> quizes = new HashMap<>(200);
-    public static HashMap<Integer, User> users = new HashMap<>(200);
-    public static HashMap<Integer, Question> questions = new HashMap<>(1000);
 
     static {
         Quiz quiz = new Quiz();

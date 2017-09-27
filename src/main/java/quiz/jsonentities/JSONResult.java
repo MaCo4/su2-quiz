@@ -3,9 +3,6 @@ package quiz.jsonentities;
 public class JSONResult {
     private String result;
 
-    public JSONResult() {
-    }
-
     public String getResult() {
         return result;
     }

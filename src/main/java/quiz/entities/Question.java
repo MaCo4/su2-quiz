@@ -13,9 +13,6 @@ public class Question {
     private int correct;
     private int time;
 
-    public Question() {
-    }
-
     public String getText() {
         return text;
     }

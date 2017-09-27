@@ -11,9 +11,7 @@ public class Quiz {
     private String name;
     private long startTime;
     private Question[] questions;
-
-    public Quiz() {
-    }
+    private Score[] scores;
 
     public int getId() {
         return id;
@@ -45,5 +43,13 @@ public class Quiz {
 
     public void setQuestions(Question[] questions) {
         this.questions = questions;
+    }
+
+    public Score[] getScores() {
+        return scores;
+    }
+
+    public void setScores(Score[] scores) {
+        this.scores = scores;
     }
 }
