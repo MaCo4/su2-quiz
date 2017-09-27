@@ -2,6 +2,7 @@ package quiz.services;
 
 import quiz.DataStore;
 import quiz.entities.Quiz;
+import quiz.jsonentities.JSONAnswer;
 import quiz.jsonentities.JSONQuiz;
 import quiz.jsonentities.JSONResult;
 
@@ -48,5 +49,15 @@ public class QuizService {
     @Produces(MediaType.APPLICATION_JSON)
     public Quiz[] getAllQuizes() {
         return DataStore.quizes.values().toArray(new Quiz[0]);
+    }
+
+    @POST
+    @Path("/{quizId}/question/{questionId}/answer")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONResult postAnswerToQuestion(@PathParam("quizId") String quizId,
+                                           @PathParam("questionId") String quiestionId,
+                                           JSONAnswer answer) {
+        return new JSONResult();
     }
 }
