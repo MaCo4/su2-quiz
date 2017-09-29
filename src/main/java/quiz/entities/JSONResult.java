@@ -1,4 +1,4 @@
-package quiz.jsonentities;
+package quiz.entities;
 
 public class JSONResult {
     private String result;

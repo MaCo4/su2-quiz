@@ -10,13 +10,18 @@
         div.view {
             display: none;
         }
+
+        div.answer-option {
+            padding: 5px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="view" id="quizSelectionView">
-        <h1>Quizer</h1>
+        <h1>Quizer</h1><br>
         <button class="btn btn-primary" onclick="gotoView('createQuizView')"><span class="glyphicon glyphicon-plus"></span> Opprett ny quiz</button><br><br>
         <table id="quizes" class="table table-striped">
             <thead>
@@ -33,8 +38,16 @@
 
     <div class="view" id="createQuizView">
         <h1>Lag ny quiz</h1><br>
-        <input type="text" class="form-control" id="newQuizName" placeholder="Quiznavn"><br>
-        <input type="datetime-local" class="form-control" id="newQuizStartTime" placeholder="Starttidspunkt"><br>
+        <div class="input-group">
+            <span class="input-group-addon">Quiznavn</span>
+            <input type="text" class="form-control" id="newQuizName" placeholder="Quiznavn">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">Starttidspunkt</span>
+            <input type="text" class="form-control" id="newQuizStartTime" placeholder="Format: dd/mm/åååå tt:mm:ss">
+        </div>
+        <br>
         <table id="newQuizQuestions" class="table table-striped">
             <thead>
             <tr>
@@ -42,21 +55,19 @@
                 <th>Svaralternativer</th>
                 <th>Svartid</th>
                 <th>Valgfritt bilde</th>
-                <!--<th>Fjern</th>-->
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td><input type="text" class="form-control" data-attribute="text" placeholder="Spørsmål"></td>
                 <td>
-                    <input type="text" class="form-control" data-attribute="alt1" placeholder="Riktig svar">
+                    <input type="text" class="form-control" data-attribute="correct" placeholder="Riktig svar">
                     <input type="text" class="form-control" data-attribute="alt2" placeholder="Alternativ 2">
                     <input type="text" class="form-control" data-attribute="alt3" placeholder="Alternativ 3">
                     <input type="text" class="form-control" data-attribute="alt4" placeholder="Alternativ 4">
                 </td>
                 <td><input type="number" min="1" step="1" class="form-control" data-attribute="time" placeholder="Tid i sekunder"></td>
                 <td><input type="text" class="form-control" data-attribute="img" placeholder="Bilde-URL"></td>
-                <!--<td><button class="btn btn-danger" onclick="removeQuestion(1)"><span class="glyphicon glyphicon-remove"></span></button></td>-->
             </tr>
             </tbody>
         </table>
@@ -67,15 +78,61 @@
     </div>
 
     <div class="view" id="playQuizView">
-        <h1>Spill quiz: <span id="quizNameTitle"></span></h1><br>
-        <div id="selectNickSubView">
+        <h1>Spill quiz: <span id="quizNameTitle"></span></h1><hr>
+        <div id="selectNick">
             <p>Velg et nick:</p>
             <input type="text" class="form-control" id="playerName" placeholder="Nicknavn"><br><br>
             <button class="btn btn-primary" onclick="playQuiz()">Start quiz</button>
         </div>
-        <div class="view" id="playQuizContentView">
-            HER ER QUIZEN
+
+        <div class="view" id="waitForQuizStart">
+            <h2>Quizen starter om <span id="quizStartCountdown">-- sek</span></h2>
         </div>
+
+        <div class="view" id="quizContent">
+            <p>Spørsmål nr. <span id="questionNum"></span></p>
+            <div class="row">
+                <div class="col-sm-10"><h3 id="questionText">Spørsmål</h3></div>
+                <div class="col-sm-2" style="text-align: right"><h3 id="questionTime">30 sek</h3></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 answer-option">
+                    <img id="questionImg" src="#" style="display: none; max-width: 100%; max-height: 400px">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 answer-option"><button class="btn btn-block btn-default answer-btn" id="answerOption0" onclick="selectAnswer(0)">Svar 1</button></div>
+                <div class="col-xs-6 answer-option"><button class="btn btn-block btn-default answer-btn" id="answerOption1" onclick="selectAnswer(1)">Svar 2</button></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 answer-option"><button class="btn btn-block btn-default answer-btn" id="answerOption2" onclick="selectAnswer(2)">Svar 3</button></div>
+                <div class="col-xs-6 answer-option"><button class="btn btn-block btn-default answer-btn" id="answerOption3" onclick="selectAnswer(3)">Svar 4</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="view" id="quizFinishedView">
+        <h1>Quizen er over!</h1><hr>
+        <button class="btn btn-primary" id="openScoreboardBtn">Se scoreboard</button>
+    </div>
+
+    <div class="view" id="spectateQuizView">
+        <h1>Scoreboard for quiz: <span id="spectateQuizNameTitle"></span></h1><br>
+        <button class="btn btn-secondary" onclick="exitSpectateQuiz()">Tilbake</button><br><br>
+        <table id="spectateQuizScoreboard" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nicknavn</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Magnus</td>
+                <td>100</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

@@ -5,9 +5,7 @@ import quiz.entities.PlayerAnswer;
 import quiz.entities.Question;
 import quiz.entities.Quiz;
 import quiz.entities.Score;
-import quiz.jsonentities.JSONAnswer;
-import quiz.jsonentities.JSONQuiz;
-import quiz.jsonentities.JSONResult;
+import quiz.entities.JSONResult;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -62,7 +60,6 @@ public class QuizService {
     public JSONResult postAnswerToQuestion(@PathParam("quizId") String strQuizId,
                                            @PathParam("questionIndex") String strQuestionIndex,
                                            PlayerAnswer answer) {
-
         try {
             int quizId, questionIndex;
             quizId = Integer.parseInt(strQuizId);
@@ -86,6 +83,7 @@ public class QuizService {
             return result;
 
         } catch (Exception ex) {
+            // Hvis noe feil skjer svarer vi bare med 404
             throw new NotFoundException();
         }
     }
@@ -109,6 +107,11 @@ public class QuizService {
     }
 
     private Score getScoreFor(Quiz quiz, String player) {
+        if (quiz.getScores() == null) {
+            quiz.setScores(new Score[0]);
+            return null;
+        }
+
         for (Score score : quiz.getScores()) {
             if (Objects.equals(score.getPlayer(), player)) {
                 return score;

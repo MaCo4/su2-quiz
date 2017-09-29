@@ -7,11 +7,11 @@ package quiz.entities;
  */
 public class Question {
 
-    private int id;
     private String text;
     private String[] alternatives;
     private int correct;
     private int time;
+    private String img;
 
     public String getText() {
         return text;
@@ -43,5 +43,13 @@ public class Question {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

@@ -17,20 +17,21 @@ public class DataStore {
 
     static {
         Quiz quiz = new Quiz();
-        quiz.setName("Test");
-        quiz.setStartTime(792384);
+        quiz.setName("Eksempelquiz");
+        quiz.setStartTime(System.currentTimeMillis() / 1000 + 60);
 
         Question q1 = new Question();
         q1.setText("Hva er tallet?");
         q1.setAlternatives(new String[]{"1", "2", "3", "4"});
         q1.setCorrect(2);
-        q1.setTime(123);
+        q1.setTime(20);
+        q1.setImg("http://ny.telespor.no/wp-content/uploads/2012/12/manedens-bilde-april-09.jpg");
 
         Question q2 = new Question();
-        q1.setText("Hva er navnet?");
-        q1.setAlternatives(new String[]{"adfg", "wert", "sdfg", "dfgh"});
-        q1.setCorrect(1);
-        q1.setTime(123);
+        q2.setText("Hva er navnet?");
+        q2.setAlternatives(new String[]{"Sigrid", "Steinar", "Susanne", "Svein"});
+        q2.setCorrect(0);
+        q2.setTime(30);
 
         quiz.setQuestions(new Question[] {q1, q2});
         addNewQuiz(quiz);
